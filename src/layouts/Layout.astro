@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+const { title = 'StudioDev — Digital Solutions', description = 'Sviluppatore Full-Stack e creatore di soluzioni digitali.' } = Astro.props;
+---
+<!doctype html>
+<html lang="it" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f8f5" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <script is:inline>
+      const savedTheme = localStorage.getItem('studiodev-theme');
+      const theme = savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = theme;
+      const language = localStorage.getItem('studiodev-language') || 'it';
+      document.documentElement.lang = language;
+      const applyLanguage = () => {
+        document.querySelectorAll('[data-it][data-en]').forEach((element) => {
+          element.textContent = element.dataset[language === 'it' ? 'it' : 'en'] ?? '';
+        });
+        const languageButton = document.querySelector('#language-toggle');
+        if (languageButton) languageButton.textContent = language === 'it' ? 'EN' : 'IT';
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyLanguage, { once: true });
+      } else {
+        applyLanguage();
+      }
+    </script>
+  </head>
+  <body><slot /></body>
+</html>

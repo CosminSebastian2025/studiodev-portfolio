@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { copy, projects } from '../data/site';
+const it = copy.it;
+const en = copy.en;
+---
+<Layout>
+  <header class="site-header wrap">
+    <a class="wordmark" href="#home" aria-label="StudioDev home">studio<span>dev</span><i>.</i></a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#services"><span data-it={it.nav[0]} data-en={en.nav[0]}>{it.nav[0]}</span></a>
+      <a href="#projects"><span data-it={it.nav[1]} data-en={en.nav[1]}>{it.nav[1]}</span></a>
+      <a href="#approach"><span data-it={it.nav[2]} data-en={en.nav[2]}>{it.nav[2]}</span></a>
+      <a href="#contact"><span data-it={it.nav[3]} data-en={en.nav[3]}>{it.nav[3]}</span></a>
+    </nav>
+    <div class="header-tools">
+      <button class="text-button" id="language-toggle" aria-label="Change language">EN</button>
+      <button class="theme-button" id="theme-toggle" aria-label="Toggle light or dark theme"><span class="theme-icon">◐</span></button>
+      <a class="header-cta" href="#contact"><span data-it={it.primary} data-en={en.primary}>{it.primary}</span><span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span><span data-it={it.eyebrow} data-en={en.eyebrow}>{it.eyebrow}</span></p>
+        <h1><span data-it={it.title} data-en={en.title}>{it.title}</span></h1>
+        <p class="hero-intro" data-it={it.intro} data-en={en.intro}>{it.intro}</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#contact"><span data-it={it.primary} data-en={en.primary}>{it.primary}</span><span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#projects"><span data-it={it.secondary} data-en={en.secondary}>{it.secondary}</span><span aria-hidden="true">↓</span></a>
+        </div>
+        <p class="availability"><span></span><span data-it={it.note} data-en={en.note}>{it.note}</span></p>
+      </div>
+      <div class="hero-art" aria-label="Abstract StudioDev visual identity" role="img">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="art-sun"></div><div class="art-shape shape-one"></div><div class="art-shape shape-two"></div>
+        <div class="art-cross cross-one">✳</div><div class="art-cross cross-two">✳</div>
+        <div class="art-caption"><span>STUDIODEV</span><span>45° 26′ N &nbsp; 9° 11′ E</span></div>
+        <div class="art-label"><span>CRAFTED<br />WITH INTENT</span><b>SD.</b></div>
+      </div>
+      <div class="hero-bottom"><span>01 — 05</span><span class="hero-line"></span><span>WEB · SOFTWARE · IDEAS</span></div>
+    </section>
+
+    <section class="services section-pad" id="services">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow" data-it={it.serviceLabel} data-en={en.serviceLabel}>{it.serviceLabel}</p><h2 data-it={it.serviceTitle} data-en={en.serviceTitle}>{it.serviceTitle}</h2></div><p class="section-intro" data-it={it.serviceIntro} data-en={en.serviceIntro}>{it.serviceIntro}</p></div>
+        <div class="service-grid">
+          {it.services.map((service, index) => <article class="service-card"><span class="card-index">{service[0]}</span><div><h3 data-it={service[1]} data-en={en.services[index][1]}>{service[1]}</h3><p data-it={service[2]} data-en={en.services[index][2]}>{service[2]}</p></div><span class="card-arrow" aria-hidden="true">↗</span></article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="projects section-pad" id="projects">
+      <div class="wrap">
+        <div class="section-heading projects-heading"><div><p class="eyebrow" data-it={it.projectsLabel} data-en={en.projectsLabel}>{it.projectsLabel}</p><h2 data-it={it.projectsTitle} data-en={en.projectsTitle}>{it.projectsTitle}</h2></div><p class="section-intro" data-it={it.projectsIntro} data-en={en.projectsIntro}>{it.projectsIntro}</p></div>
+        <div class="project-grid">
+          {projects.map((project, index) => <article class:list={['project-card', `tone-${project.tone}`, index === 0 && 'project-featured']}>
+            <div class="project-visual"><span class="project-symbol">{project.mark}</span><span class="project-orbit orbit-a"></span><span class="project-orbit orbit-b"></span><span class="project-count">0{index + 1}</span></div>
+            <div class="project-meta"><div><h3>{project.name}</h3><p class="project-status"><span></span><span data-it={it.status} data-en={en.status}>{it.status}</span></p></div><span class="project-arrow" aria-hidden="true">↗</span></div>
+          </article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="approach section-pad" id="approach">
+      <div class="wrap approach-layout">
+        <div class="approach-heading"><p class="eyebrow" data-it={it.processLabel} data-en={en.processLabel}>{it.processLabel}</p><h2 data-it={it.processTitle} data-en={en.processTitle}>{it.processTitle}</h2><p class="section-intro" data-it={it.processIntro} data-en={en.processIntro}>{it.processIntro}</p></div>
+        <div class="steps">{it.steps.map((step,index) => <article class="step"><span class="step-number">{step[0]}</span><div><h3 data-it={step[1]} data-en={en.steps[index][1]}>{step[1]}</h3><p data-it={step[2]} data-en={en.steps[index][2]}>{step[2]}</p></div><span class="step-mark">↗</span></article>)}</div>
+      </div>
+    </section>
+
+    <section class="contact section-pad" id="contact">
+      <div class="wrap contact-panel">
+        <div class="contact-copy"><p class="eyebrow" data-it={it.contactLabel} data-en={en.contactLabel}>{it.contactLabel}</p><h2 data-it={it.contactTitle} data-en={en.contactTitle}>{it.contactTitle}</h2><p data-it={it.contactIntro} data-en={en.contactIntro}>{it.contactIntro}</p></div>
+        <div class="contact-actions"><a class="button button-light" href="#contact" data-integration-link="email" aria-disabled="true"><span data-it={it.quote} data-en={en.quote}>{it.quote}</span><span aria-hidden="true">↗</span></a><a class="button button-outline" href="#contact" data-integration-link="booking" aria-disabled="true"><span data-it={it.meeting} data-en={en.meeting}>{it.meeting}</span><span aria-hidden="true">↗</span></a><p class="integration-note" data-it={it.integration} data-en={en.integration}>{it.integration}</p></div>
+        <span class="contact-decoration" aria-hidden="true">SD.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap"><a class="wordmark" href="#home">studio<span>dev</span><i>.</i></a><p data-it={it.footer} data-en={en.footer}>{it.footer}</p><a href="#home" class="back-top">BACK TO TOP ↑</a><span class="copyright">© 2026 StudioDev</span></footer>
+</Layout>
+
+<script>
+  const root = document.documentElement;
+  const themeButton = document.querySelector<HTMLButtonElement>('#theme-toggle');
+  const languageButton = document.querySelector<HTMLButtonElement>('#language-toggle');
+  themeButton?.addEventListener('click', () => {
+    const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = theme;
+    localStorage.setItem('studiodev-theme', theme);
+  });
+  languageButton?.addEventListener('click', () => {
+    const language = root.lang === 'it' ? 'en' : 'it';
+    root.lang = language;
+    localStorage.setItem('studiodev-language', language);
+    document.querySelectorAll<HTMLElement>('[data-it][data-en]').forEach((element) => {
+      element.textContent = element.dataset[language === 'it' ? 'it' : 'en'] ?? '';
+    });
+    if (languageButton) languageButton.textContent = language === 'it' ? 'EN' : 'IT';
+  });
+
+  const email = import.meta.env.PUBLIC_CONTACT_EMAIL?.trim();
+  const booking = import.meta.env.PUBLIC_BOOKING_URL?.trim();
+  const video = import.meta.env.PUBLIC_VIDEO_URL?.trim();
+  const emailLink = document.querySelector<HTMLAnchorElement>('[data-integration-link="email"]');
+  const bookingLink = document.querySelector<HTMLAnchorElement>('[data-integration-link="booking"]');
+  if (email && emailLink) {
+    emailLink.href = `mailto:${email}?subject=${encodeURIComponent('StudioDev — project enquiry')}`;
+    emailLink.removeAttribute('aria-disabled');
+  }
+  if (booking && bookingLink) {
+    bookingLink.href = booking;
+    bookingLink.removeAttribute('aria-disabled');
+  }
+  if (video && bookingLink) bookingLink.dataset.videoConfigured = 'true';
+</script>
